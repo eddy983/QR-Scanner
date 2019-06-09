@@ -21,7 +21,7 @@
 
   <body>
     <div class="scanner">
-      <div class="select">
+      <div class="select" style="display: none;">
         <label for="videoSource">Video source: </label
         ><select id="videoSource"></select>
       </div>
@@ -29,14 +29,14 @@
         <video muted autoplay id="video" playsinline="true"></video>
         <canvas
           id="pcCanvas"
-          width="640"
-          height="480"
+          width="100%"
+          height="100%"
           style="display: none; float: bottom;"
         ></canvas>
         <canvas
           id="mobileCanvas"
-          width="240"
-          height="320"
+          width="100%"
+          height="100%"
           style="display: none; float: bottom;"
         ></canvas>
       </div>
