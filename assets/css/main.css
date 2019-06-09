@@ -1,0 +1,87 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* this defines what 1rem is */
+  /* calc = 10/16px which is 0.625
+  then converted to percentage
+  calc = 0.625 x 100 which is 62.5% */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  background: url(../../assets/img/micro_carbon_@2X.png);
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.scanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.scanner__box {
+  background: #0f0601;
+  border: 1px solid #faa82f;
+  height: 55%;
+  width: 30%;
+}
+
+.btn {
+  color: #000;
+  background: #faa82f;
+  border: none;
+  border-radius: 12px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin-top: 10.2rem;
+  padding: 2.4rem 0;
+  width: 30%;
+}
+
+@media only screen and (max-width: 85.375em) {
+  .scanner {
+    padding: 0 10%;
+  }
+
+  .scanner__box {
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 5.4rem;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .btn {
+    font-size: 4.4rem;
+  }
+}
+
+@media only screen and (max-width: 25.875em) {
+  .btn {
+    font-size: 3.4rem;
+    margin-top: 5.4rem;
+  }
+}
+
+@media only screen and (max-width: 20em) {
+  .scanner__box {
+    height: 60%;
+  }
+
+  .btn {
+    font-size: 2.4rem;
+  }
+}

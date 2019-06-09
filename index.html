@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>QR-Scanner</title>
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <!-- Script  -->
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+  </head>
+
+  <body>
+    <div class="scanner">
+      <div class="scanner__box">
+        <video muted autoplay id="video" playsinline="true"></video>
+        <canvas
+          id="pcCanvas"
+          width="640"
+          height="480"
+          style="display: none; float: bottom;"
+        ></canvas>
+        <canvas
+          id="mobileCanvas"
+          width="240"
+          height="320"
+          style="display: none; float: bottom;"
+        ></canvas>
+      </div>
+      <div>Barcode result: <span id="dbr"></span></div>
+      <button class="btn" id="go">stop scanner</button>
+    </div>
+  </body>
+
+  <script async src="assets/js/zxing.js"></script>
+  <script src="assets/js/video.js"></script>
+</html>
