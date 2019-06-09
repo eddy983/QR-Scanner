@@ -19,6 +19,7 @@ body {
   background: url(../../assets/img/micro_carbon_@2X.png);
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0.04em;
+  height: 100vh;
 }
 
 .scanner {
@@ -26,7 +27,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .scanner__box {
