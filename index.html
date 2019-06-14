@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>QR-Scanner</title>
-
+    
     <!-- Font -->
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap"
-      rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap"
+    rel="stylesheet"
     />
-
+    
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css" />
-
+    
     <!-- Script  -->
     <script src="assets/js/jquery-1.11.3.min.js"></script>
   </head>
-
+  
   <body>
     <div class="scanner">
-      <div class="select" style="display: none;">
+      <div hidden class="select" ">
+          <div>Barcode result: <span id="dbr"></span></div>
         <label for="videoSource">Video source: </label
         ><select id="videoSource"></select>
       </div>
@@ -40,17 +41,16 @@
           style="display: none; float: bottom;"
         ></canvas>
       </div>
-      <div>Barcode result: <span id="dbr"></span></div>
-      <button class="btn" id="go">stop scanner</button>
+      <button class="btn" id="go">Start scanner</button>
     </div>
 
     <!-- Pop-up -->
-    <div class="popup" id="popup">
+    <div hidden class="popup" id="popup">
       <div class="popup__content">
-        <a href="#" class="popup__close">&times;</a>
+        <a href="#" class="popup__close" id = "popupclose">&times;</a>
         <div class="popup__items">
           <p class="popup__title">Name</p>
-          <p class="popup__item">John Doe</p>
+          <p class="popup__item" id = "username">John Doe</p>
         </div>
         <div class="popup__items">
           <p class="popup__title">Tickets</p>

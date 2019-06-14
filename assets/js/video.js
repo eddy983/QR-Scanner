@@ -5,8 +5,12 @@ var ctx = canvas.getContext('2d');
 var mobileCtx = mobileCanvas.getContext('2d');
 var videoSelect = document.querySelector('select#videoSource');
 var videoOption = document.getElementById('videoOption');
+var popup = document.getElementById('popup');
 var buttonGo = document.getElementById('go');
 var barcode_result = document.getElementById('dbr');
+var close_modal_button = document.getElementById('popupclose');
+
+
 
 var isPaused = false;
 var videoWidth = 640,
@@ -30,13 +34,19 @@ tick();
 
 var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   var result = new Uint8Array(ZXing.HEAPU8.buffer, ptr, len);
-  console.log(String.fromCharCode.apply(null, result));
+  let payload = String.fromCharCode.apply(null, result)
+  console.log(payload);
   barcode_result.textContent = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
+  buttonGo.innerHTML = "Start Scanner";
+  name.innerHTML = payload;
+  $(".popup").show();
+
   if (isPC) { 
     canvas.style.display = 'block';
   } else {
-    mobileCanvas.style.display = 'block';
+    canvas.style.display = 'block';
+    // mobileCanvas.style.display = 'block';
   }
 };
 
@@ -93,7 +103,9 @@ function dataURItoBlob(dataURI) {
 buttonGo.onclick = function () {
   if (isPC) {
     canvas.style.display = 'none';
+    buttonGo.innerHTML = "Stop Scan"
   } else {
+    buttonGo.innerHTML = "Stop Scan"
     mobileCanvas.style.display = 'none';
   }
 
@@ -163,6 +175,9 @@ navigator.mediaDevices.enumerateDevices()
 
 videoSelect.onchange = getStream;
 
+//MODAL CLOSE STATEMENT
+close_modal_button.addEventListener("click",close_modal);
+
 function gotDevices(deviceInfos) {
   for (var i = deviceInfos.length - 1; i >= 0; --i) {
     var deviceInfo = deviceInfos[i];
@@ -182,6 +197,7 @@ function getStream() {
   buttonGo.disabled = false;
   if (window.stream) {
     window.stream.getTracks().forEach(function(track) {
+      alert("hello");
       track.stop();
     });
   }
@@ -203,4 +219,9 @@ function gotStream(stream) {
 
 function handleError(error) {
   console.log('Error: ', error);
+}
+
+function close_modal() {
+  $(".popup").hide();
+  console.log("hello")
 }
