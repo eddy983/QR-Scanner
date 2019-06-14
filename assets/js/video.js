@@ -9,8 +9,9 @@ var popup = document.getElementById('popup');
 var buttonGo = document.getElementById('go');
 var barcode_result = document.getElementById('dbr');
 var close_modal_button = document.getElementById('popupclose');
+var username = document.getElementById('username');
 
-
+console.log(username.innerHTML)
 
 var isPaused = false;
 var videoWidth = 640,
@@ -39,7 +40,8 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   barcode_result.textContent = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
   buttonGo.innerHTML = "Start Scanner";
-  name.innerHTML = payload;
+  username.innerHTML = payload;
+
   $(".popup").show();
 
   if (isPC) { 
