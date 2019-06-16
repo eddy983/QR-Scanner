@@ -31,7 +31,9 @@ body {
 }
 
 .scanner__box {
-  background: #0f0601;
+  background: url(../../assets/img/Start-Image.svg), #0f0601;
+  background-repeat: no-repeat;
+  background-position: center;
   border: 1px solid #faa82f;
   height: 55%;
   width: 30%;
