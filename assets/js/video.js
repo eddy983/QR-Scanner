@@ -7,12 +7,12 @@ var videoSelect = document.querySelector('select#videoSource');
 var videoOption = document.getElementById('videoOption');
 var popup = document.getElementById('popup');
 var buttonGo = document.getElementById('go');
+var buttonStop = document.getElementById('stop');
 var barcode_result = document.getElementById('dbr');
 var close_modal_button = document.getElementById('popupclose');
 var username = document.getElementById('username');
 
-console.log(username.innerHTML)
-
+var stop = false
 var isPaused = false;
 var videoWidth = 640,
   videoHeight = 480;
@@ -39,15 +39,16 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   console.log(payload);
   barcode_result.textContent = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
-  buttonGo.innerHTML = "Start Scanner";
+  buttonGo.style.display = 'block'
+  buttonStop.style.display = 'none'
+
   username.innerHTML = payload;
 
   $(".popup").show();
 
   if (isPC) { 
-    canvas.style.display = 'block';
+    // canvas.style.display = 'block';
   } else {
-    canvas.style.display = 'block';
     // mobileCanvas.style.display = 'block';
   }
 };
@@ -103,18 +104,39 @@ function dataURItoBlob(dataURI) {
 
 // add button event
 buttonGo.onclick = function () {
+  buttonGo.style.display = 'none'
+  buttonStop.style.display = 'block'
+  videoElement.removeAttribute("hidden");
+  stop = false;
+  getStream()
   if (isPC) {
     canvas.style.display = 'none';
-    buttonGo.innerHTML = "Stop Scan"
   } else {
-    buttonGo.innerHTML = "Stop Scan"
     mobileCanvas.style.display = 'none';
   }
 
   isPaused = false;
-  scanBarcode();
+  setTimeout(() => {
+
+    scanBarcode();
+    
+  }, 5000);
   buttonGo.disabled = true;
 };
+
+buttonStop.onclick = function () {
+  buttonGo.style.display = 'block'
+  buttonStop.style.display = 'none'
+  buttonGo.disabled = false;
+  videoElement.setAttribute("hidden", true);
+  stop = true;
+  err = 0;
+  if (window.stream) {
+    window.stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+  }
+}
 
 // scan barcode
 function scanBarcode() {
@@ -165,7 +187,7 @@ function scanBarcode() {
   var err = ZXing._decode_any(decodePtr);
   console.timeEnd('decode barcode');
   console.log("error code", err);
-  if (err == -2) {
+  if (err == -2 && stop == false) {
     setTimeout(scanBarcode, 30);
   }
 }
@@ -199,7 +221,6 @@ function getStream() {
   buttonGo.disabled = false;
   if (window.stream) {
     window.stream.getTracks().forEach(function(track) {
-      alert("hello");
       track.stop();
     });
   }
@@ -217,6 +238,7 @@ function getStream() {
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
   videoElement.srcObject = stream;
+  console.log(stream)
 }
 
 function handleError(error) {
@@ -225,5 +247,4 @@ function handleError(error) {
 
 function close_modal() {
   $(".popup").hide();
-  console.log("hello")
 }
