@@ -44,7 +44,7 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
 
   username.innerHTML = payload;
 
-  $(".popup").show();
+  show_modal();
 
   if (isPC) { 
     // canvas.style.display = 'block';
@@ -120,7 +120,7 @@ buttonGo.onclick = function () {
 
     scanBarcode();
     
-  }, 5000);
+  }, 3000);
   buttonGo.disabled = true;
 };
 
@@ -247,4 +247,24 @@ function handleError(error) {
 
 function close_modal() {
   $(".popup").hide();
+}
+
+function show_modal() {
+  stop_camera()
+  $(".popup").show();
+  
+}
+
+
+
+function stop_camera (){
+
+  videoElement.setAttribute("hidden", true);
+
+  if (window.stream) {
+    window.stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+  }
+
 }
