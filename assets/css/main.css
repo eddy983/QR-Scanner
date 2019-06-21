@@ -30,7 +30,7 @@ body {
   height: 100%;
 }
 
-.scanner__box {
+.scanner__box { 
   background: url(../../assets/img/Start-Image.svg), #0f0601;
   background-repeat: no-repeat;
   background-position: center;
