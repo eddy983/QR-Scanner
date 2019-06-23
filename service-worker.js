@@ -1,7 +1,7 @@
 "use strict";
 
 // CODELAB: Update cache names any time any of the cached files change.
-const CACHE_NAME = "static-cache-v1";
+const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
 
 // CODELAB: Add list of files to cache here.
@@ -45,6 +45,16 @@ self.addEventListener("activate", evt => {
   );
 
   self.clients.claim();
+});
+
+self.addEventListener("fetch", function(event) {
+  console.log(event.request.url);
+
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
 });
 
 // self.addEventListener("fetch", evt => {
