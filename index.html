@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="TMS" content="Our Qr-scanner">
     <meta name="Description" content="It is a qr-scanner">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon" />
     <title>QR-Scanner</title>
 
     <!-- Manifest -->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- Theme-color -->
+    <meta name="theme-color" content="#0f0601" />
     
     <!-- Font -->
     <link
@@ -17,10 +22,11 @@
     />
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link href="assets/css/phone.min.css" rel="stylesheet" media="(max-width: 85.375em)">
+
     <!-- Script  -->
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <script async src="assets/js/jquery-1.11.3.min.js"></script>
   </head>
   
   <body>
@@ -80,4 +86,15 @@
 
   <script async src="assets/js/zxing.js"></script>
   <script src="assets/js/video.js"></script>
+  <script>
+    // Register service worker.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((reg) => {
+              console.log('Service worker registered.', reg);
+            });
+      });
+    }
+  </script>
 </html>
