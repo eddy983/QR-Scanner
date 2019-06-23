@@ -1,13 +1,14 @@
 "use strict";
 
 // CODELAB: Update cache names any time any of the cached files change.
-const CACHE_NAME = "static-cache-v2";
+const CACHE_NAME = "static-cache-v4";
 const DATA_CACHE_NAME = "data-cache-v1";
 
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
+  "/assets/font/font.min.css",
   "/assets/css/main.min.css",
   "/assets/css/phone.min.css",
   "/assets/js/jquery-1.11.3.min.js",
